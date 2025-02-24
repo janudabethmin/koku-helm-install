@@ -5,8 +5,8 @@ metadata:
   namespace: koku
 spec:
   accessModes:
-    - ReadWriteMany 
+    - ReadWriteOnce
+  storageClassName: ebs-sc
   resources:
     requests:
-      storage: 20Gi  
-  storageClassName: gp2
+      storage: 20Gi
