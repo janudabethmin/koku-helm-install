@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sources-client
+  namespace: koku
+  labels:
+    app: sources-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sources-client
+  template:
+    metadata:
+      labels:
+        app: sources-client
+    spec:
+      containers:
+        - name: sources-client
+          image: public.ecr.aws/v0r6c2e2/koku_base
+          restartPolicy: OnFailure
+          workingDir: /koku/
+          command:
+            - "watchmedo"
+            - "auto-restart"
+            - "--directory=./koku"
+            - "--pattern=*.py"
+            - "--ignore-patterns=*test*"
+            - "--recursive"
+            - "--"
+            - "python"
+            - "koku/manage.py"
+            - "sources"
+          envFrom:
+            - configMapRef:
+                name: koku-config
+          ports:
+            - containerPort: 8000
+            - containerPort: 9000
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /koku/koku
+            - name: shared-storage
+              mountPath: /koku/.unleash
+            - name: shared-storage
+              mountPath: /koku/db_functions
+            - name: shared-storage
+              mountPath: /koku/scripts
+            - name: shared-storage
+              mountPath: /etc/credentials
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: koku-pvc
