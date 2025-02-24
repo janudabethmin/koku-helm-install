@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: koku-pushgateway
+  namespace: koku
+spec:
+  ports:
+    - port: 9091
+      targetPort: 9091
+  selector:
+    app: koku-pushgateway

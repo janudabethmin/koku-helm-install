@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koku-pushgateway
+  namespace: koku
+  labels:
+    app: koku-pushgateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koku-pushgateway
+  template:
+    metadata:
+      labels:
+        app: koku-pushgateway
+    spec:
+      containers:
+        - name: koku-pushgateway
+          image: prom/pushgateway
+          ports:
+            - containerPort: 9091
