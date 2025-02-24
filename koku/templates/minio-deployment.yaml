@@ -23,7 +23,7 @@ spec:
             - containerPort: 9090
           envFrom:
             - configMapRef:
-                name: koku-config
+                name: minio-config
           command:
             - minio
             - server
