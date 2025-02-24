@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koku-listener
+  namespace: koku
+  labels:
+    app: koku-listener
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koku-listener
+  template:
+    metadata:
+      labels:
+        app: koku-listener
+    spec:
+      containers:
+        - name: koku-listener
+          image: public.ecr.aws/v0r6c2e2/koku_base
+          workingDir: /koku
+          command:
+            - 'watchmedo'
+            - 'auto-restart'
+            - '--directory=./koku'
+            - '--pattern=*.py'
+            - '--ignore-patterns=*test*'
+            - '--recursive'
+            - '--'
+            - 'python'
+            - 'koku/manage.py'
+            - 'listener'
+          envFrom:
+            - configMapRef:
+                name: koku-config
+          ports:
+            - containerPort: 9000
+            - containerPort: 5678
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /koku/koku
+            - name: shared-storage
+              mountPath: /koku/.unleash
+            - name: shared-storage
+              mountPath: /koku/db_functions
+            - name: shared-storage
+              mountPath: /koku/scripts
+            - name: shared-storage
+              mountPath: /etc/credentials
+            - name: shared-storage
+              mountPath: /tmp
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: koku-pvc
