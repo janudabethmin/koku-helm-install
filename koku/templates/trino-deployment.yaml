@@ -22,7 +22,7 @@ spec:
               containerPort: 10000
           envFrom:
             - configMapRef:
-                name: koku-config 
+                name: trino-config
           volumeMounts:
             - name: shared-storage
               mountPath: /etc/trino
