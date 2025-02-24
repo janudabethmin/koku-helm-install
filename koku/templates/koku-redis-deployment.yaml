@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koku-redis
+  namespace: koku
+  labels:
+    app: koku-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koku-redis
+  template:
+    metadata:
+      labels:
+        app: koku-redis
+    spec:
+      containers:
+        - name: koku-redis
+          image: redis:5.0.4
+          ports:
+            - containerPort: 6379
