@@ -20,7 +20,7 @@ spec:
           image: public.ecr.aws/v0r6c2e2/koku-db:14
           envFrom:
             - configMapRef:
-                name: koku-config  
+                name: koku-db-config  
           ports:
             - containerPort: 5432
           volumeMounts:
