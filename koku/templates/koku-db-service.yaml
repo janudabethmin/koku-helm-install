@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: koku-db
+  namespace: koku
+  labels:
+    app: koku-db
+spec:
+  selector:
+    app: koku-db
+  ports:
+    - name: postgres
+      port: 15432
+      targetPort: 5432
+  clusterIP: None  # Optional, this makes the service headless if you need to access it directly from other pods
+  type: ClusterIP
