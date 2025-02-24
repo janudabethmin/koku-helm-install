@@ -38,7 +38,7 @@ spec:
             - "subs_extraction,subs_transmission"
           envFrom:
             - configMapRef:
-                name: koku-config
+                name: subs-worker-config
           ports:
             - containerPort: 9000
           volumeMounts:
