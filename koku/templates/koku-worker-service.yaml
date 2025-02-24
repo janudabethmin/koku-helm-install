@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: koku-worker
+  namespace: koku
+  labels:
+    app: koku-worker
+spec:
+  selector:
+    app: koku-worker
+  ports:
+    - protocol: TCP
+      port: 6001
+      targetPort: 9000
+    - protocol: TCP
+      port: 6002
+      targetPort: 9000
+    - protocol: TCP
+      port: 6003
+      targetPort: 9000
+    - protocol: TCP
+      port: 6004
+      targetPort: 9000
+    - protocol: TCP
+      port: 6005
+      targetPort: 9000
+    - protocol: TCP
+      port: 6006
+      targetPort: 9000
+    - protocol: TCP
+      port: 6007
+      targetPort: 9000
+    - protocol: TCP
+      port: 6008
+      targetPort: 9000
+    - protocol: TCP
+      port: 6009
+      targetPort: 9000
+    - protocol: TCP
+      port: 6010
+      targetPort: 9000
+    - protocol: TCP
+      port: 6011
+      targetPort: 9000
+    - protocol: TCP
+      port: 6012
+      targetPort: 9000
+    - protocol: TCP
+      port: 6013
+      targetPort: 9000
+    - protocol: TCP
+      port: 6014
+      targetPort: 9000
+    - protocol: TCP
+      port: 6015
+      targetPort: 9000
+    - protocol: TCP
+      port: 6016
+      targetPort: 9000
+    - protocol: TCP
+      port: 6017
+      targetPort: 9000
+    - protocol: TCP
+      port: 6018
+      targetPort: 9000
+    - protocol: TCP
+      port: 6019
+      targetPort: 9000
+    - protocol: TCP
+      port: 6020
+      targetPort: 9000
+    - protocol: TCP
+      port: 5678
+      targetPort: 5678
+  type: ClusterIP

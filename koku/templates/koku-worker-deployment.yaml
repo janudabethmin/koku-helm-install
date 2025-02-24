@@ -1,31 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: koku-server
+  name: koku-worker
   namespace: koku
   labels:
-    app: koku-server
+    app: koku-worker
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: koku-server
+      app: koku-worker
   template:
     metadata:
       labels:
-        app: koku-server
+        app: koku-worker
     spec:
       containers:
-        - name: koku-server
+        - name: koku-worker
           image: public.ecr.aws/v0r6c2e2/koku_base
-          workingDir: /koku
-          command: ["/koku/run_server.sh"]
+          workingDir: /koku/koku
+          command:
+            - python
+            - manage.py
+            - restart_celery
           envFrom:
             - configMapRef:
                 name: koku-config
           ports:
-            - containerPort: 8000
             - containerPort: 9000
+            - containerPort: 5678
           volumeMounts:
             - name: shared-storage
               mountPath: /koku/koku
@@ -36,9 +39,11 @@ spec:
             - name: shared-storage
               mountPath: /koku/scripts
             - name: shared-storage
-              mountPath: /koku/run_server.sh
-            - name: shared-storage
               mountPath: /etc/credentials
+            - name: shared-storage
+              mountPath: /testing
+            - name: shared-storage
+              mountPath: /tmp
       volumes:
         - name: shared-storage
           persistentVolumeClaim:

@@ -27,34 +27,19 @@ spec:
             - containerPort: 8000
             - containerPort: 9000
           volumeMounts:
-            - name: koku-data
+            - name: shared-storage
               mountPath: /koku/koku
-            - name: unleash-data
+            - name: shared-storage
               mountPath: /koku/.unleash
-            - name: db-functions
+            - name: shared-storage
               mountPath: /koku/db_functions
-            - name: scripts
+            - name: shared-storage
               mountPath: /koku/scripts
-            - name: run-server
+            - name: shared-storage
               mountPath: /koku/run_server.sh
-            - name: credentials
+            - name: shared-storage
               mountPath: /etc/credentials
       volumes:
-        - name: koku-data
+        - name: shared-storage
           persistentVolumeClaim:
             claimName: koku-pvc
-        - name: unleash-data
-          persistentVolumeClaim:
-            claimName: unleash-pvc
-        - name: db-functions
-          persistentVolumeClaim:
-            claimName: db-functions-pvc
-        - name: scripts
-          persistentVolumeClaim:
-            claimName: scripts-pvc
-        - name: run-server
-          hostPath:
-            path: ./run_server.sh
-        - name: credentials
-          hostPath:
-            path: ./dev/credentials

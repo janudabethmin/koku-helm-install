@@ -5,8 +5,8 @@ metadata:
   namespace: koku
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany 
   resources:
     requests:
-      storage: 5Gi 
-  storageClassName: gp3  
+      storage: 20Gi  
+  storageClassName: gp3
