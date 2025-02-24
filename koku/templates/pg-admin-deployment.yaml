@@ -24,10 +24,10 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: koku-shared-storage
+            - name: shared-storage
               mountPath: /pgadmin4/servers.json
               subPath: servers.json  
       volumes:
-        - name: koku-shared-storage
+        - name: shared-storage
           persistentVolumeClaim:
             claimName: koku-pvc 
