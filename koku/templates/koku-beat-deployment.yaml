@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koku-beat
+  namespace: koku
+  labels:
+    app: koku-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koku-beat
+  template:
+    metadata:
+      labels:
+        app: koku-beat
+    spec:
+      containers:
+        - name: koku-beat
+          image: public.ecr.aws/v0r6c2e2/koku_base
+          hostname: koku_beat
+          workingDir: /koku/koku
+          command:
+            - "celery"
+            - "-A"
+            - "koku"
+            - "beat"
+            - "-l"
+            - "info"
+          envFrom:
+            - configMapRef:
+                name: koku-config
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /koku/koku
+            - name: shared-storage
+              mountPath: /koku/.unleash
+            - name: shared-storage
+              mountPath: /koku/db_functions
+            - name: shared-storage
+              mountPath: /koku/scripts
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: koku-pvc
