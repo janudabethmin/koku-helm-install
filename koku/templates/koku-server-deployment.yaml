@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: koku-server
+  namespace: koku
+  labels:
+    app: koku-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: koku-server
+  template:
+    metadata:
+      labels:
+        app: koku-server
+    spec:
+      containers:
+        - name: koku-server
+          image: public.ecr.aws/v0r6c2e2/koku_base
+          workingDir: /koku
+          command: ["/koku/run_server.sh"]
+          envFrom:
+            - configMapRef:
+                name: koku-config
+          ports:
+            - containerPort: 8000
+            - containerPort: 9000
+          volumeMounts:
+            - name: koku-data
+              mountPath: /koku/koku
+            - name: unleash-data
+              mountPath: /koku/.unleash
+            - name: db-functions
+              mountPath: /koku/db_functions
+            - name: scripts
+              mountPath: /koku/scripts
+            - name: run-server
+              mountPath: /koku/run_server.sh
+            - name: credentials
+              mountPath: /etc/credentials
+      volumes:
+        - name: koku-data
+          hostPath:
+            path: ./koku
+        - name: unleash-data
+          hostPath:
+            path: ./dev/containers/unleash
+        - name: db-functions
+          hostPath:
+            path: ./db_functions
+        - name: scripts
+          hostPath:
+            path: ./scripts
+        - name: run-server
+          hostPath:
+            path: ./run_server.sh
+        - name: credentials
+          hostPath:
+            path: ./dev/credentials
