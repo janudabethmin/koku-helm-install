@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subs-worker
+  namespace: koku
+  labels:
+    app: subs-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subs-worker
+  template:
+    metadata:
+      labels:
+        app: subs-worker
+    spec:
+      containers:
+        - name: subs-worker
+          image: public.ecr.aws/v0r6c2e2/koku_base
+          workingDir: /koku/koku
+          command:
+            - "watchmedo"
+            - "auto-restart"
+            - "--directory=./"
+            - "--pattern=*.py"
+            - "--ignore-patterns=*test*"
+            - "--recursive"
+            - "--"
+            - "celery"
+            - "-A"
+            - "koku"
+            - "worker"
+            - "--without-gossip"
+            - "-l"
+            - "info"
+            - "-Q"
+            - "subs_extraction,subs_transmission"
+          envFrom:
+            - configMapRef:
+                name: koku-config
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /koku/koku
+            - name: shared-storage
+              mountPath: /koku/.unleash
+            - name: shared-storage
+              mountPath: /koku/db_functions
+            - name: shared-storage
+              mountPath: /koku/scripts
+            - name: shared-storage
+              mountPath: /etc/credentials
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: koku-pvc
