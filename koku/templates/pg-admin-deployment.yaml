@@ -20,7 +20,7 @@ spec:
           image: dpage/pgadmin4
           envFrom:
             - configMapRef:
-                name: koku-config
+                name: pg-admin-config
           ports:
             - containerPort: 80
           volumeMounts:
