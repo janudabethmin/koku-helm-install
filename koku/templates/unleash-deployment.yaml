@@ -22,7 +22,7 @@ spec:
             - containerPort: 4242
           envFrom:
             - configMapRef:
-                name: koku-config
+                name: unleash-config
           volumeMounts:
             - name: shared-storage
               mountPath: /.unleash

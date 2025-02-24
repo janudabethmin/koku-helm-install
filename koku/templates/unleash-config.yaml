@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: unleash-config
+  namespace: koku
+data:
+  UNLEASH_ADMIN_TOKEN: "your-admin-token-here"  # Replace with actual token or leave empty for later population
+  UNLEASH_TOKEN: "your-client-token-here"  # Replace with actual token or leave empty for later population
+  UNLEASH_DATABASE_USER: "postgres"  # Default value; modify if needed
+  UNLEASH_DATABASE_PASSWORD: "postgres"  # Default value; modify if needed
+  UNLEASH_PORT: "4242"
+  LOG_LEVEL: "INFO"
+  DATABASE_HOST: "db"
+  DATABASE_NAME: "unleash"
+  DATABASE_SSL: "false"
+  IMPORT_DROP_BEFORE_IMPORT: "true"
+  IMPORT_FILE: "/.unleash/flags.json"
+  CHECK_VERSION: "false"
