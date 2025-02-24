@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trino
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trino
+  template:
+    metadata:
+      labels:
+        app: trino
+    spec:
+      containers:
+        - name: trino
+          image: quay.io/redhat-services-prod/cost-mgmt-dev-tenant/ubi-trino:470-009
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: grpc
+              containerPort: 10000
+          envFrom:
+            - configMapRef:
+                name: koku-config 
+          volumeMounts:
+            - name: shared-storage
+              mountPath: /etc/trino
+              readOnly: true
+            - name: shared-storage
+              mountPath: /data/trino/data 
+            - name: hared-storage
+              mountPath: /data/trino/logs 
+          resources:
+            limits:
+              memory: "2Gi"
+              cpu: "1"
+            requests:
+              memory: "1Gi"
+              cpu: "0.5"
+          securityContext:
+            ulimits:
+              nofile:
+                soft: 4096
+                hard: 4096
+      volumes:
+        - name: shared-storage
+          persistentVolumeClaim:
+            claimName: koku-pvc  
