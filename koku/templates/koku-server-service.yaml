@@ -7,10 +7,12 @@ spec:
   selector:
     app: koku-server
   ports:
-    - protocol: TCP
+    - name: port1
+      protocol: TCP
       port: 8000       
       targetPort: 8000 
-    - protocol: TCP
+    - name: port2
+      protocol: TCP
       port: 8001       
       targetPort: 9000 
   type: ClusterIP
