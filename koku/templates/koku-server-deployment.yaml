@@ -22,7 +22,7 @@ spec:
           command: ["/koku/run_server.sh"]
           envFrom:
             - configMapRef:
-                name: koku-config
+                name: koku-server-config
           ports:
             - containerPort: 8000
             - containerPort: 9000
