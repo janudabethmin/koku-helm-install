@@ -32,18 +32,7 @@ spec:
                 name: koku-beat-config
             - configMapRef:
                 name: koku-config
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
-          volumeMounts:
-            - name: shared-storage
-              mountPath: /koku/koku
-            - name: shared-storage
-              mountPath: /koku/.unleash
-            - name: shared-storage
-              mountPath: /koku/db_functions
-            - name: shared-storage
-              mountPath: /koku/scripts
-      volumes:
-        - name: shared-storage
-          persistentVolumeClaim:
-            claimName: koku-pvc
+

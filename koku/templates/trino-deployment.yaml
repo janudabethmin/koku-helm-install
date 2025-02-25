@@ -25,13 +25,14 @@ spec:
                 name: trino-config
             - configMapRef:
                 name: koku-config
+          imagePullPolicy: Always
           volumeMounts:
             - name: shared-storage
               mountPath: /etc/trino
               readOnly: true
             - name: shared-storage
               mountPath: /data/trino/data 
-            - name: hared-storage
+            - name: shared-storage
               mountPath: /data/trino/logs 
           resources:
             limits:
@@ -48,4 +49,4 @@ spec:
       volumes:
         - name: shared-storage
           persistentVolumeClaim:
-            claimName: koku-pvc  
+            claimName: trino-pvc  

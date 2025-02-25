@@ -25,11 +25,5 @@ spec:
                 name: unleash-config
             - configMapRef:
                 name: koku-config
-          volumeMounts:
-            - name: shared-storage
-              mountPath: /.unleash
-      volumes:
-        - name: shared-storage
-          persistentVolumeClaim:
-            claimName: koku-pvc  
+          imagePullPolicy: Always
 

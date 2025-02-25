@@ -21,6 +21,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-config
+          imagePullPolicy: Always
           command:
             - /bin/sh
             - -c
@@ -42,4 +43,4 @@ spec:
       volumes:
         - name: minio-storage
           persistentVolumeClaim:
-            claimName: koku-pvc  
+            claimName: create-parquet-bucket-pvc  

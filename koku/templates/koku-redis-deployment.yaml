@@ -23,3 +23,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-config
+          imagePullPolicy: Always
+

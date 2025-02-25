@@ -28,20 +28,4 @@ spec:
           ports:
             - containerPort: 8000
             - containerPort: 9000
-          volumeMounts:
-            - name: shared-storage
-              mountPath: /koku/koku
-            - name: shared-storage
-              mountPath: /koku/.unleash
-            - name: shared-storage
-              mountPath: /koku/db_functions
-            - name: shared-storage
-              mountPath: /koku/scripts
-            - name: shared-storage
-              mountPath: /koku/run_server.sh
-            - name: shared-storage
-              mountPath: /etc/credentials
-      volumes:
-        - name: shared-storage
-          persistentVolumeClaim:
-            claimName: koku-pvc
+          imagePullPolicy: Always

@@ -23,10 +23,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-config  
+          imagePullPolicy: Always
           volumeMounts:
             - name: grafana-storage
               mountPath: /var/lib/grafana
       volumes:
         - name: grafana-storage
           persistentVolumeClaim:
-            claimName: koku-pvc 
+            claimName: koku-grafana-pvc 
