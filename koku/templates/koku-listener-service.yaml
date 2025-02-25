@@ -9,64 +9,84 @@ spec:
   selector:
     app: koku-listener
   ports:
-    - protocol: TCP
+    - name: port1
+      protocol: TCP
       port: 7001
       targetPort: 9000
-    - protocol: TCP
+    - name: port2
+      protocol: TCP
       port: 7002
       targetPort: 9000
-    - protocol: TCP
+    - name: port3
+      protocol: TCP
       port: 7003
       targetPort: 9000
-    - protocol: TCP
+    - name: port4
+      protocol: TCP
       port: 7004
       targetPort: 9000
-    - protocol: TCP
+    - name: port5
+      protocol: TCP
       port: 7005
       targetPort: 9000
-    - protocol: TCP
+    - name: port6
+      protocol: TCP
       port: 7006
       targetPort: 9000
-    - protocol: TCP
+    - name: port7
+      protocol: TCP
       port: 7007
       targetPort: 9000
-    - protocol: TCP
+    - name: port8
+      protocol: TCP
       port: 7008
       targetPort: 9000
-    - protocol: TCP
+    - name: port9
+      protocol: TCP
       port: 7009
       targetPort: 9000
-    - protocol: TCP
+    - name: port10
+      protocol: TCP
       port: 7010
       targetPort: 9000
-    - protocol: TCP
+    - name: port11
+      protocol: TCP
       port: 7011
       targetPort: 9000
-    - protocol: TCP
+    - name: port12
+      protocol: TCP
       port: 7012
       targetPort: 9000
-    - protocol: TCP
+    - name: port13
+      protocol: TCP
       port: 7013
       targetPort: 9000
-    - protocol: TCP
+    - name: port14
+      protocol: TCP
       port: 7014
       targetPort: 9000
-    - protocol: TCP
+    - name: port15
+      protocol: TCP
       port: 7015
       targetPort: 9000
-    - protocol: TCP
+    - name: port16
+      protocol: TCP
       port: 7016
       targetPort: 9000
-    - protocol: TCP
+    - name: port17
+      protocol: TCP
       port: 7017
       targetPort: 9000
-    - protocol: TCP
+    - name: port18
+      protocol: TCP
       port: 7018
       targetPort: 9000
-    - protocol: TCP
+    - name: port19
+      protocol: TCP
       port: 7019
       targetPort: 9000
-    - protocol: TCP
+    - name: port20
+      protocol: TCP
       port: 7020
       targetPort: 9000
   type: ClusterIP
