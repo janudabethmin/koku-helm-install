@@ -19,8 +19,8 @@ spec:
         - name: koku-server
           image: public.ecr.aws/v0r6c2e2/koku_base:latest
           workingDir: /koku
-          # command: ["/koku/run_server.sh"]
-          command: ["/bin/sleep", "3000"]
+          command: ["/koku/run_server.sh"]
+          # command: ["/bin/sleep", "3000"]
           envFrom:
             - configMapRef:
                 name: koku-server-config
