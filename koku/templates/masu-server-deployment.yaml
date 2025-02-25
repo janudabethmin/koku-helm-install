@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: masu-server
-          image: public.ecr.aws/v0r6c2e2/koku_base
+          image: public.ecr.aws/v0r6c2e2/koku_base:latest
           workingDir: /koku
           command: ["/koku/run_server.sh"]
           envFrom:

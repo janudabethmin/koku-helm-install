@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: koku-worker
-          image: public.ecr.aws/v0r6c2e2/koku_base
+          image: public.ecr.aws/v0r6c2e2/koku_base:latest
           workingDir: /koku/koku
           command:
             - python
