@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: koku-server
-          image: public.ecr.aws/v0r6c2e2/koku_base:v1
+          image: public.ecr.aws/v0r6c2e2/koku_base
           workingDir: /koku
           command: ["/koku/run_server.sh"]
           envFrom:
