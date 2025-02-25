@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trino
+  namespace: koku
 spec:
   replicas: 1
   selector:
@@ -41,11 +42,6 @@ spec:
             requests:
               memory: "1Gi"
               cpu: "0.5"
-          securityContext:
-            ulimits:
-              nofile:
-                soft: 4096
-                hard: 4096
       volumes:
         - name: shared-storage
           persistentVolumeClaim:
