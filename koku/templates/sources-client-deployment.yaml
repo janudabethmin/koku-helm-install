@@ -18,7 +18,6 @@ spec:
       containers:
         - name: sources-client
           image: public.ecr.aws/v0r6c2e2/koku_base:latest
-          restartPolicy: OnFailure
           workingDir: /koku/
           command:
             - "watchmedo"
