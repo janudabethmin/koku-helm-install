@@ -21,6 +21,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-db-config  
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 5432
           volumeMounts:

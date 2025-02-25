@@ -30,6 +30,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-beat-config
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 8000
           volumeMounts:

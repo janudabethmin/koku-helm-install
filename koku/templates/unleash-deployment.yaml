@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: unleash-config
+            - configMapRef:
+                name: koku-config
           volumeMounts:
             - name: shared-storage
               mountPath: /.unleash

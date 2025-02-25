@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-server-config
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 8000
             - containerPort: 9000

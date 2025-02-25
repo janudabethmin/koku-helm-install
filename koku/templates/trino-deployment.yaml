@@ -23,6 +23,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: trino-config
+            - configMapRef:
+                name: koku-config
           volumeMounts:
             - name: shared-storage
               mountPath: /etc/trino

@@ -33,6 +33,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: koku-listener-config
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 9000
             - containerPort: 5678

@@ -21,6 +21,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: pg-admin-config
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 80
           volumeMounts:

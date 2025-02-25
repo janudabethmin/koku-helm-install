@@ -39,6 +39,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: subs-worker-config
+            - configMapRef:
+                name: koku-config
           ports:
             - containerPort: 9000
           volumeMounts:

@@ -24,6 +24,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: minio-config
+            - configMapRef:
+                name: koku-config
           command:
             - minio
             - server
