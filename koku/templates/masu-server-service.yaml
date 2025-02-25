@@ -7,10 +7,12 @@ spec:
   selector:
     app: masu-server
   ports:
-    - protocol: TCP
+    - name: port1
+      protocol: TCP
       port: 5042
       targetPort: 8000
-    - protocol: TCP
+    - name: port2
+      protocol: TCP
       port: 5001
       targetPort: 9000
   type: ClusterIP
