@@ -9,7 +9,8 @@ spec:
   selector:
     app: subs-worker
   ports:
-    - protocol: TCP
+    - name: port1
+      protocol: TCP
       port: 7021
       targetPort: 9000
   type: ClusterIP
