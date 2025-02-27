@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hive-metastore
-          image: quay.io/redhat-services-prod/cost-mgmt-dev-tenant/ubi-hive:2f89bfb
+          image: public.ecr.aws/v0r6c2e2/hive-metastore:latest
           ports:
             - containerPort: 8000
               name: http

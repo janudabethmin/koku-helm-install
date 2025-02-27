@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: unleash
-          image: unleashorg/unleash-server:5.8.2
+          image: public.ecr.aws/v0r6c2e2/unleash:latest
           ports:
             - containerPort: 4242
           envFrom:

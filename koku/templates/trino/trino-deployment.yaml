@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: trino
-          image: quay.io/redhat-services-prod/cost-mgmt-dev-tenant/ubi-trino:470-009
+          image: public.ecr.aws/v0r6c2e2/trino:latest
           ports:
             - name: http
               containerPort: 8080

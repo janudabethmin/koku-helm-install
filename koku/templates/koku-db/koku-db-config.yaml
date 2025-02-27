@@ -10,5 +10,5 @@ data:
   _PG_CREATE_DATABASES: "postgres|postgres,unleash|postgres"
   POSTGRES_SQL_SERVICE_PORT: "15432"
   DATABASE_DATA_DIR: "postgresql"
-  USER_ID: ""
-  GROUP_ID: ""
+  USER_ID: "999"
+  GROUP_ID: "999"
